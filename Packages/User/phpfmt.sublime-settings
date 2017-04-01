@@ -1,0 +1,8 @@
+{
+	"autocomplete": true,
+	"format_on_save": false,
+	"php_bin": "C:/xampp/php/php.exe",
+	"psr2": true,
+	"psr2_naming": false,
+	"version": 1
+}

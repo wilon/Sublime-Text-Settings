@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<style type="text/css">
+    ${1:begain}
+</style>$0]]></content>
+    <tabTrigger>cssstyle</tabTrigger>
+    <scope>text.html</scope>
+    <description>开始写css</description>
+</snippet>

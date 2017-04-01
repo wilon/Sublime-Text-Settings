@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+\$_ENV['${1:var}']
+]]></content>
+    <tabTrigger>env</tabTrigger>
+    <scope>source.php</scope>
+    <description>PHP: ENV['...']</description>
+</snippet>

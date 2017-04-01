@@ -1,0 +1,16 @@
+{
+    // make plugin verbose in debug console
+    "verbose": false,
+
+    // scan document to format tables when saving
+    "autoformat_on_save": true,
+
+    // spaces between "|" and cell's text
+    "margin": 2,
+
+    // additional spaces before/after cell's text (depending on justification)
+    "padding": 2,
+
+    // how text should be justified when not specified [LEFT, RIGHT, CENTER]
+    "default_justification": "LEFT"
+}

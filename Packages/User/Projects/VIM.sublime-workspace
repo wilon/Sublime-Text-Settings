@@ -1,0 +1,626 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wilo",
+				"wilon.github.io\t(gulpfile.js)"
+			],
+			[
+				"flo",
+				"float: 〔property〕"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"an",
+				"analysis-phone-number"
+			],
+			[
+				"wil",
+				"wilon.github.io\t(index.html)"
+			],
+			[
+				"j",
+				"jquery\t$('')"
+			],
+			[
+				"for",
+				"for〔keyword〕"
+			],
+			[
+				"ph",
+				"phoneText"
+			],
+			[
+				"cs",
+				"cssstyle\t开始写css"
+			],
+			[
+				"br",
+				"bracketArr"
+			],
+			[
+				"ke",
+				"array_key_exists"
+			],
+			[
+				"tok",
+				"token"
+			],
+			[
+				"impl",
+				"implode〔function〕"
+			],
+			[
+				"pregm",
+				"preg_match"
+			],
+			[
+				"preg_replace_",
+				"preg_replace_callback〔function〕"
+			],
+			[
+				"simod",
+				"simple_dump〔function〕"
+			],
+			[
+				"die",
+				"diesimpledump\tvardump输出"
+			],
+			[
+				"myId",
+				"myIdRsaPub"
+			],
+			[
+				"var",
+				"var_dump\t(better.php)"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "mark",
+		"selected_items":
+		[
+			[
+				"mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"ssyht",
+				"Set Syntax: HTML"
+			],
+			[
+				"ssyjs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"fopen",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"forma",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"ssycss",
+				"Set Syntax: CSS"
+			],
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"utf",
+				"ConvertToUTF8: Reload with Encoding"
+			],
+			[
+				"ut",
+				"ConvertToUTF8: Reload with Encoding"
+			],
+			[
+				"faopen",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"marbro",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			],
+			[
+				"instap",
+				"Install Package Control"
+			],
+			[
+				"remp",
+				"Package Control: Remove Package"
+			],
+			[
+				"bra",
+				"BracketHighlighter: Remove Brackets"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"proje",
+				"Project Manager"
+			],
+			[
+				"inspa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 291.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			" import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '261dd1222b4693ce6d4f85f9c827ac06' + '6d5ab8ebdd020086947172a8a1356bb6'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/gulpfile.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/js/settings.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/layouts/layout.html",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/config.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/README.md",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/css/styles.css",
+		"/Users/weilong/web/github/wilon.github.io/blog/javascripts/search.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/data/index.md",
+		"/Users/weilong/web/github/wilon.github.io/blog/index.html",
+		"/Users/weilong/web/github/wilon.github.io/.gitmodules",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/data/index-cn.md",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/node_modules/metalsmith-changed/README.md",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/tmp/metalsmith-changed-ctimes.json",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/node_modules/metalsmith-changed/index.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/node_modules/metalsmith-changed/index.babel.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/bower_components/jquery/src/wrap.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/doc/css/styles.css",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/node_modules/whet.extend/Readme.md",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/js/main.js",
+		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/doc/index.html",
+		"/Users/weilong/web/github/analysis-phone-number/phone_rule.js",
+		"/Users/weilong/web/github/authcode/README.md",
+		"/Users/weilong/web/github/wilon.github.io/data/git.md",
+		"/Users/weilong/web/github/analysis-phone-number/README.md",
+		"/Users/weilong/web/github/analysis-phone-number/index.html",
+		"/tmp/qqdwk.log",
+		"/Users/weilong/web/github/wilon.github.io/static/readme.md",
+		"/Users/weilong/web/github/wilon.github.io/static/channel_v3_tool.sh",
+		"/etc/hosts",
+		"/Users/weilong/web/github/phpcmd/controller/followGithubUser.php",
+		"/Users/weilong/web/github/wilon.github.io/gulpfile.js",
+		"/Users/weilong/web/github/wilon.github.io/data/linux.md",
+		"/Users/weilong/web/github/wilon.github.io/index.html",
+		"/Users/weilong/web/github/wilon.github.io/blog/stylesheets/search.css",
+		"/Users/weilong/web/github/wilon.github.io/cache/data.json",
+		"/Users/weilong/web/github/wilon.github.io/cache/css.json",
+		"/Users/weilong/web/github/wilon.github.io/npm-debug.log",
+		"/Users/weilong/web/github/wilon.github.io/dev.html",
+		"/Users/weilong/web/github/wilon.github.io/.gitignore",
+		"/Users/weilong/web/github/wilon.github.io/README.md",
+		"/Users/weilong/web/github/wilon.github.io/static/wilonblog-4b938e52c7.min.js",
+		"/Users/weilong/web/github/simple-php-debug/test/test.php",
+		"/Users/weilong/web/github/simple-php-debug/README.md",
+		"/Users/weilong/web/github/simple-php-debug/src/SimpleDebug.php",
+		"/Users/weilong/Documents/毛泽东传.txt",
+		"/Users/weilong/Downloads/毛泽东传.txt",
+		"/Users/weilong/Downloads/MZDxwrzdgs.txt",
+		"/Users/weilong/web/github/phpcmd/config/github.php",
+		"/Users/weilong/web/github/phpcmd/lib/function.php",
+		"/Users/weilong/web/github/phpcmd/composer.json",
+		"/Users/weilong/web/github/phpcmd/github1.php",
+		"/Users/weilong/web/github/phpcmd/controller/base.php",
+		"/Users/weilong/web/github/oh-my-ssh/generate.php",
+		"/Users/weilong/web/github/oh-my-ssh/ssh.php",
+		"/Users/weilong/web/github/stforum/vendor/s9e/text-formatter/src/Utils/Http/Clients/Curl.php",
+		"/Users/weilong/web/github/oh-my-ssh/id_rsa_pub_authcode",
+		"/Users/weilong/web/github/mynote/MySqlNote.sql",
+		"/Users/weilong/web/github/simple-php-debug/composer.json",
+		"/Users/weilong/web/github/simple-php-debug/test/better.php",
+		"/Users/weilong/web/github/simple-php-debug/test/test2.php",
+		"/Users/weilong/web/github/simple-php-debug/LICENSE",
+		"/Users/weilong/web/github/simple-debug/test/test.php",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/encoding_cache.json",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/favorite_files_list.json",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/sublimetextweb.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/wilon.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/ifeng.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/weilong/Downloads/rc4(1).py",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Installed Packages/Ctranslator tool.sublime-package",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Monokai++.tmTheme",
+		"/Users/weilong/Downloads/tmp7e79d544.png",
+		"/Users/weilong/Downloads/svn_extractor.py",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Theme - Default/Monokai.sublime-theme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/CodeFormatter/tests/php/test1.php",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/BracketHighlighter/Example.sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Side Bar.sublime-menu",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-menu"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"/Users/weilong/web/github/wilon.github.io",
+			"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet",
+			"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/js",
+			"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src",
+			"/Users/weilong/web/github/wilon.github.io/data"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"some_notes",
+			"|",
+			"search tag",
+			"enter",
+			".main-content",
+			"padding-top",
+			"font-size",
+			"- title: ",
+			".",
+			"jQuery",
+			"()",
+			"- title: ",
+			"event",
+			"()",
+			"\"DOM",
+			"DOM",
+			"title",
+			"DOM",
+			".",
+			"Selectors",
+			"forcePattern",
+			"Metalsmith",
+			"data",
+			"index.md",
+			"Global Ajax Event Handlers",
+			"MANIPULATION",
+			"article",
+			"items",
+			"https://api.jquery.com/all-selector/",
+			"api.jquery.com",
+			"vertical",
+			"main-content",
+			"vertical",
+			"versions",
+			"search",
+			"filter ",
+			"filter",
+			" filter-version",
+			"filter-group",
+			"search",
+			".main-content",
+			".main-content article",
+			".main-header",
+			"Quick API Reference",
+			"url",
+			"http:",
+			"Analysis Phone Number",
+			"a",
+			"手机靓号解析工具",
+			"X",
+			"XXX",
+			"XX",
+			"Y",
+			"X",
+			"**",
+			"?<",
+			"?:",
+			"?<=3",
+			"(?<=3\\2)4",
+			"AXAX",
+			"ABAB",
+			"/((\\",
+			"(1\\d{2})\\d{5}",
+			": ",
+			"ABAB",
+			"ABC",
+			"g",
+			"--",
+			"wilon.github.io",
+			"xx",
+			"phoneTable",
+			"phoneTbody",
+			"phone_rule",
+			"-md-9",
+			"item",
+			"phone",
+			"0,",
+			":-m",
+			":",
+			"::",
+			"<br>",
+			"3",
+			" ",
+			"start",
+			"glyphicon",
+			"http://ocfxac0k9.bkt.clouddn.com/static/f/gitconfig.txt",
+			"static/f",
+			"./cache/",
+			"imageresize",
+			"sprite",
+			"octocat-wave",
+			"sprite",
+			"octocat-wave",
+			"octocat-wave ",
+			"octocat",
+			"octo-arm",
+			"github-corner",
+			"fork",
+			"corner",
+			"itemHTML",
+			"creatListHTML",
+			"createTagsListHTML",
+			"createTagsHTML",
+			"valToHTML",
+			"createSreachListHTML",
+			"creatListHTML",
+			"valToHTML",
+			"creatListHTML",
+			"createSreachListHTML",
+			"jsdig",
+			"valToHTML",
+			"val",
+			"creatListHTML",
+			"valToHTML",
+			"creatListHTML",
+			"valToHTML",
+			"inputElm",
+			"ajax",
+			"getQueryString",
+			"getTagsAll",
+			"valToHTML",
+			"creatListHTML",
+			"loading",
+			"createTagsListHTML",
+			"itemHTML",
+			"createSreachListHTML",
+			"ole.lo",
+			"isSreachIndexOF"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 39.0
+	},
+	"input":
+	{
+		"height": 47.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "VIM.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"curl",
+				"stforum/vendor/s9e/text-formatter/src/Utils/Http/Clients/Curl.php"
+			],
+			[
+				"faov",
+				"Packages/User/favorite_files_list.json"
+			],
+			[
+				"ctran",
+				"Installed Packages/Ctranslator tool.sublime-package"
+			],
+			[
+				"monoka++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monkai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"mokai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"windowkey",
+				"Packages/Default/Default (Windows).sublime-keymap"
+			],
+			[
+				"winkey",
+				"Packages/User/Default (Windows).sublime-keymap"
+			],
+			[
+				"monokaithem",
+				"Packages/User/Color Highlighter/themes/Monokai.tmTheme"
+			],
+			[
+				"monokaitm",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"setimono",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"monokaitmthe",
+				"Packages/User/SublimeLinter/Monokai (SL).tmTheme"
+			],
+			[
+				"mono++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monok++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"mono",
+				"Packages/Theme - Default/Monokai.sublime-theme"
+			],
+			[
+				"monokai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monokaitmt",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"monokai",
+				"Packages/Theme - Default/Monokai.sublime-theme"
+			],
+			[
+				".php",
+				"Packages/CodeFormatter/tests/php/test1.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 356.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

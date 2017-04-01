@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+\$ch = curl_init();    // 初始化
+curl_setopt(\$ch, CURLOPT_URL, \$url);    // url地址
+curl_setopt(\$ch, CURLOPT_HTTPHEADER, \$headers);    // http请求头
+curl_setopt(\$ch, CURLOPT_HEADER, 0);    // 是否显示头信息
+curl_setopt(\$ch, CURLOPT_TIMEOUT, 1);    // 最长秒数
+curl_setopt(\$ch, CURLOPT_RETURNTRANSFER, 1);    // 是否获取文本，不获取文本则以文件流形式输出
+curl_setopt(\$ch, CURLOPT_POST, 1);    // 数据发送方式post
+curl_setopt(\$ch, CURLOPT_POSTFIELDS, \$post_data);    // post数据
+\$response = curl_exec(\$ch);    // 获取文本为1则得到字串
+curl_close(\$ch);    // 关闭
+]]></content>
+    <tabTrigger>curlbest</tabTrigger>
+    <scopeName>language_construct</scopeName>
+    <scope>source.php</scope>
+    <description>PHP: curl</description>
+</snippet>

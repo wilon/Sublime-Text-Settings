@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<!--{loop \$${1:data} \$${2:key} \$${3:val}}-->
+    $4
+<!--{/loop}-->$0]]></content>
+    <tabTrigger>dzloop</tabTrigger>
+    <scope>text.html</scope>
+    <description>dz模板-php循环</description>
+</snippet>

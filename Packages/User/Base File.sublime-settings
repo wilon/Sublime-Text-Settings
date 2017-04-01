@@ -1,0 +1,4 @@
+{
+    "jsdocs_extend_double_slash": false,    // 取消//注释下按enter
+    "jsdocs_decorate": false,    // 取消//注释下按ctrl+enter
+}

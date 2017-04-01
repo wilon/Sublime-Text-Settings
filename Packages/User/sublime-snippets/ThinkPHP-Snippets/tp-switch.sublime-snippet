@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<switch name="${1:User.level}">
+	<case value="${2:1}">${3:value1}</case>
+	<case value="${4:2}">${5:value2}</case>
+	<default />${6:default}
+</switch>$0]]></content>
+	<tabTrigger>tpswitch</tabTrigger>
+	<scope>text.html</scope>
+	<description>TP:: switch</description>
+</snippet>

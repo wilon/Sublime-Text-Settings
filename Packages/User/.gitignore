@@ -1,0 +1,15 @@
+/*
+
+!/.gitignore
+
+!/Projects/
+
+!/sublime-snippets/
+
+!/*.sublime-settings
+
+!/*.tmTheme
+
+!/*.sublime-menu
+
+!/*.json

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[header('Content-Length: ' . ${1:strlen(\$str)});$0]]></content>
+    <tabTrigger>headercontentlength</tabTrigger>
+    <scope>source.php</scope>
+    <description>header文本长度</description>
+</snippet>

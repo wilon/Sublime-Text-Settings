@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[<!--{if \$${1:var}}-->
+    $2
+<!--{else}-->
+    $3
+<!--{/if}-->$0]]></content>
+    <tabTrigger>dzifelse</tabTrigger>
+    <scope>text.html</scope>
+    <description>dz模板-ifelse</description>
+</snippet>

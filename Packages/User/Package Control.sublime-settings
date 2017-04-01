@@ -1,0 +1,52 @@
+{
+	"auto_upgrade_last_run": null,
+	"bootstrapped": true,
+	"channels":
+	[
+		"http://wilon.github.io/static/channel_v3.json"
+	],
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"All Autocomplete",
+		"AngularJS",
+		"AutoFileName",
+		"BracketHighlighter",
+		"Clickable URLs",
+		"Codecs33",
+		"Color Highlighter",
+		"ColorSchemeSelector",
+		"ConvertToUTF8",
+		"Ctranslator tool",
+		"Diffy",
+		"DocBlockr",
+		"Emmet",
+		"FavoriteFiles",
+		"FileDiffs",
+		"HTML Minifier",
+		"HTMLBeautify",
+		"Insert Nums",
+		"LiveStyle",
+		"Markdown Preview",
+		"Markdown Table Formatter",
+		"MarkdownHighlighting",
+		"Open-Include",
+		"Origami",
+		"Package Control",
+		"ProjectManager",
+		"react-native-snippets",
+		"ReactJS",
+		"SFTP",
+		"SideBarEnhancements",
+		"Smarty",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-jshint",
+		"SublimeLinter-php",
+		"TabsExtra",
+		"VimL"
+	]
+}

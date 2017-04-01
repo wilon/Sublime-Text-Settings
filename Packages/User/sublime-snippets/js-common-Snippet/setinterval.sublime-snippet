@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[setInterval(function(){
+    $1
+}, 1000)$0]]></content>
+    <tabTrigger>setinterval</tabTrigger>
+    <scope>source.js</scope>
+    <description>定时函数</description>
+</snippet>

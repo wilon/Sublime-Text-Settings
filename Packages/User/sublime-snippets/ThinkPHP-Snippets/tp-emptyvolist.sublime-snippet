@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[<empty name="${1:list}">
+    ${2}
+<else />
+    <volist name="${1:list}" id="${3:vo}">
+        ${4}
+    </volist>
+</empty>$0
+$0]]></content>
+	<tabTrigger>tpemptyvolist</tabTrigger>
+	<scope>text.html</scope>
+	<description>TP:: emptyvolist</description>
+</snippet>

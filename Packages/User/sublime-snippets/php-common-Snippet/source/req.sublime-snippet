@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+require '${1:filename}';
+]]></content>
+    <tabTrigger>req</tabTrigger>
+    <scopeName>language_construct</scopeName>
+    <scope>source.php - comment - constant.other.class - entity.name - meta.catch - meta.class - meta.function.arguments - meta.use - string - variable.other</scope>
+    <description>PHP: require expression</description>
+</snippet>

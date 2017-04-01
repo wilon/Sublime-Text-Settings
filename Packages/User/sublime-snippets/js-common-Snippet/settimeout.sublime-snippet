@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[setTimeout(function(){
+    $1
+}, 1000)$0]]></content>
+    <tabTrigger>settimeout</tabTrigger>
+    <scope>source.js</scope>
+    <description>定时函数</description>
+</snippet>

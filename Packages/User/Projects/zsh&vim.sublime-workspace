@@ -1,0 +1,1437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"zsh",
+				"zsh-commits-now"
+			],
+			[
+				"zs",
+				"zshrc"
+			],
+			[
+				"tem",
+				"templates"
+			],
+			[
+				"sor",
+				"source\t(zshrc.zsh-template)"
+			],
+			[
+				"var",
+				"var_dump\t(better.php)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/weilong/.oh-my-zsh/tools/check_for_upgrade.sh",
+			"settings":
+			{
+				"buffer_size": 1754,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/.oh-my-zsh/tools/alias_tool.sh",
+			"settings":
+			{
+				"buffer_size": 20,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/.oh-my-zsh/templates/vimrc.zsh-template",
+			"settings":
+			{
+				"buffer_size": 444,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/.vim/bundle/ctrlp.vim/plugin/ctrlp.vim",
+			"settings":
+			{
+				"buffer_size": 2547,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/.oh-my-zsh/tools/upgrade.sh",
+			"settings":
+			{
+				"buffer_size": 1823,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/.oh-my-zsh/templates/zshrc.zsh-template",
+			"settings":
+			{
+				"buffer_size": 4107,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "main() {\n  # Use colors, but only if connected to a terminal, and that terminal\n  # supports them.\n  if which tput >/dev/null 2>&1; then\n      ncolors=$(tput colors)\n  fi\n  if [ -t 1 ] && [ -n \"$ncolors\" ] && [ \"$ncolors\" -ge 8 ]; then\n    RED=\"$(tput setaf 1)\"\n    GREEN=\"$(tput setaf 2)\"\n    YELLOW=\"$(tput setaf 3)\"\n    BLUE=\"$(tput setaf 4)\"\n    BOLD=\"$(tput bold)\"\n    NORMAL=\"$(tput sgr0)\"\n  else\n    RED=\"\"\n    GREEN=\"\"\n    YELLOW=\"\"\n    BLUE=\"\"\n    BOLD=\"\"\n    NORMAL=\"\"\n  fi\n\n  # Only enable exit-on-error after the non-critical colorization stuff,\n  # which may fail on systems lacking tput or terminfo\n  set -e\n\n  CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)\n  if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then\n    printf \"${YELLOW}Zsh is not installed!${NORMAL} Please install zsh first!\\n\"\n    exit\n  fi\n  unset CHECK_ZSH_INSTALLED\n\n  if [ ! -n \"$ZSH\" ]; then\n    ZSH=~/.oh-my-zsh\n  fi\n\n  if [ -d \"$ZSH\" ]; then\n    printf \"${YELLOW}You already have Oh My Zsh installed.${NORMAL}\\n\"\n    printf \"You'll need to remove $ZSH if you want to re-install.\\n\"\n    exit\n  fi\n\n  # Prevent the cloned repository from having insecure permissions. Failing to do\n  # so causes compinit() calls to fail with \"command not found: compdef\" errors\n  # for users with insecure umasks (e.g., \"002\", allowing group writability). Note\n  # that this will be ignored under Cygwin by default, as Windows ACLs take\n  # precedence over umasks except for filesystems mounted with option \"noacl\".\n  umask g-w,o-w\n\n  printf \"${BLUE}Cloning Oh My Zsh...${NORMAL}\\n\"\n  hash git >/dev/null 2>&1 || {\n    echo \"Error: git is not installed\"\n    exit 1\n  }\n  # The Windows (MSYS) Git is not compatible with normal use on cygwin\n  if [ \"$OSTYPE\" = cygwin ]; then\n    if git --version | grep msysgit > /dev/null; then\n      echo \"Error: Windows/MSYS Git is not supported on Cygwin\"\n      echo \"Error: Make sure the Cygwin git package is installed and is first on the path\"\n      exit 1\n    fi\n  fi\n  env git clone --depth=1 https://github.com/wilon/oh-my-zsh.git $ZSH || {\n    printf \"Error: git clone of oh-my-zsh repo failed\\n\"\n    exit 1\n  }\n  cd $ZSHwi\n\n  printf \"${BLUE}Looking for an existing zsh config...${NORMAL}\\n\"\n  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then\n    printf \"${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\\n\";\n    mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;\n  fi\n\n  printf \"${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\\n\"\n  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc\n  sed \"/^export ZSH=/ c\\\\\n  export ZSH=$ZSH\n  \" ~/.zshrc > ~/.zshrc-omztemp\n  mv -f ~/.zshrc-omztemp ~/.zshrc\n\n  # add vim conf\n  env git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || {\n    printf \"Error: git clone of VundleVim repo failed\\n\"\n  }\n  env vim -u $ZSH/templates/vimrc.zsh-template +PluginInstall +qall\n  # add git conf\n  if [ -f ~/.gitconfig ] || [ -h ~/.gitconfig ]; then\n    printf \"${YELLOW}Found ~/.gitconfig.${NORMAL} ${GREEN}Backing up to ~/.gitconfig.pre-oh-my-zsh${NORMAL}\\n\";\n    mv ~/.gitconfig ~/.gitconfig.pre-oh-my-zsh;\n  fi\n  cp -rf $ZSH/templates/gitconfig.zsh-template ~/.gitconfig\n  # history conf merge\n  cat $ZSH/templates/history.zsh-template >> ~/.zsh_history\n\n  printf \"${GREEN}\"\n  echo '         __                                     __       '\n  echo '  ____  / /_     ____ ___  __  __   ____  _____/ /_      '\n  echo ' / __ \\/ __ \\   / __ `__ \\/ / / /  /_  / / ___/ __ \\     '\n  echo '/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / /     '\n  echo '\\____/_/ /_/  /_/ /_/ /_/\\__, /    /___/____/_/ /_/ +vim '\n  echo '                        /____/                       ....is now installed!'\n  echo ''\n  echo ''\n  echo 'Please look over the ~/.zshrc file to select plugins, themes, and options.'\n  echo ''\n  echo 'p.s. Follow us at https://twitter.com/ohmyzsh.'\n  echo ''\n  echo 'p.p.s. Get stickers and t-shirts at http://shop.planetargon.com.'\n  echo ''\n  printf \"${NORMAL}\"\n  env zsh\n}\n\nmain\n",
+			"file": "/Users/weilong/.oh-my-zsh/tools/install.sh",
+			"file_size": 4000,
+			"file_write_time": 131332675100000000,
+			"settings":
+			{
+				"buffer_size": 4002,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 189.0,
+		"last_filter": "ssysh",
+		"selected_items":
+		[
+			[
+				"ssysh",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"ssyvim",
+				"Set Syntax: VimL"
+			],
+			[
+				"ssyshel",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"faopen",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"inser",
+				"Insert Nums"
+			],
+			[
+				"ssyshe",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"pacins",
+				"Package Control: Install Package"
+			],
+			[
+				"markp",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"utf",
+				"ConvertToUTF8: Reload with Encoding"
+			],
+			[
+				"marbre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"marbro",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			],
+			[
+				"instap",
+				"Install Package Control"
+			],
+			[
+				"fopen",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"remp",
+				"Package Control: Remove Package"
+			],
+			[
+				"bra",
+				"BracketHighlighter: Remove Brackets"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"proje",
+				"Project Manager"
+			],
+			[
+				"inspa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 291.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			" import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '261dd1222b4693ce6d4f85f9c827ac06' + '6d5ab8ebdd020086947172a8a1356bb6'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/weilong/.oh-my-zsh",
+		"/Users/weilong/.oh-my-zsh/templates",
+		"/Users/weilong/.vim/bundle",
+		"/Users/weilong/.vim/bundle/ctrlp.vim",
+		"/Users/weilong/.vim/bundle/ctrlp.vim/plugin",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions"
+	],
+	"file_history":
+	[
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions-wilon/zsh-autosuggestions-wilon.plugin.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/z/z.sh",
+		"/Users/weilong/.oh-my-zsh/templates/gitconfig.zsh-template",
+		"/Users/weilong/.zshrc",
+		"/Users/weilong/.oh-my-zsh/tools/merge_history.sh",
+		"/Users/weilong/.oh-my-zsh/cache/check_for_upgrade.sh",
+		"/Users/weilong/.oh-my-zsh/plugins/colon/colon.sh",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/git/git.plugin.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/colon/colon.plugin.zsh",
+		"/Users/weilong/.oh-my-zsh/custom/example.zsh",
+		"/Users/weilong/.oh-my-zsh/tools/check_for_upgrade.sh",
+		"/Users/weilong/.oh-my-zsh/custom/colors.zsh",
+		"/Users/weilong/.oh-my-zsh/tools/upgrade.sh",
+		"/Users/weilong/.oh-my-zsh/tools/install.sh",
+		"/Users/weilong/.oh-my-zsh/.gitmodules",
+		"/Users/weilong/.oh-my-zsh/templates/zshrc.zsh-template",
+		"/Users/weilong/.oh-my-zsh/plugins/droplr/droplr.plugin.zsh",
+		"/Users/weilong/Documents/Item2ColorPresets.itermcolors",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/test/highlight_test.zsh",
+		"/Users/weilong/.oh-my-zsh/themes/bira.zsh-theme",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/src/highlight.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/README.md",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/src/deprecated.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/src/config.zsh",
+		"/Users/weilong/.oh-my-zsh/cache/.zsh_history-unique",
+		"/Users/weilong/.oh-my-zsh/README.md",
+		"/Users/weilong/.oh-my-zsh/LICENSE.txt",
+		"/Users/weilong/.oh-my-zsh/oh-my-zsh.sh",
+		"/Users/weilong/.oh-my-zsh/.gitignore",
+		"/Users/weilong/.oh-my-zsh/templates/history.zsh-template",
+		"/Users/weilong/.oh-my-zsh/.zsh_history",
+		"/Users/weilong/.oh-my-zsh/lib/history.zsh",
+		"/Users/weilong/.oh-my-zsh/plugins/per-directory-history/per-directory-history.plugin.zsh",
+		"/Users/weilong/.oh-my-zsh/tools/require_tool.sh",
+		"/Users/weilong/.oh-my-zsh/tools/upgrade_history.sh",
+		"/Users/weilong/.vim/bundle/vim-tips/README.md",
+		"/Users/weilong/web/github/mynote/MySqlNote.sql",
+		"/Users/weilong/web/github/simple-php-debug/composer.json",
+		"/Users/weilong/web/github/simple-php-debug/test/better.php",
+		"/Users/weilong/web/github/simple-php-debug/src/SimpleDebug.php",
+		"/Users/weilong/web/github/simple-php-debug/README.md",
+		"/Users/weilong/web/github/simple-php-debug/test/test.php",
+		"/Users/weilong/web/github/simple-php-debug/test/test2.php",
+		"/Users/weilong/web/github/simple-php-debug/LICENSE",
+		"/Users/weilong/web/github/simple-debug/test/test.php",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/encoding_cache.json",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/favorite_files_list.json",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/sublimetextweb.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/wilon.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/ifeng.sublime-project",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/weilong/Downloads/rc4(1).py",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Installed Packages/Ctranslator tool.sublime-package",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Monokai++.tmTheme",
+		"/Users/weilong/Downloads/tmp7e79d544.png",
+		"/Users/weilong/Downloads/svn_extractor.py",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Theme - Default/Monokai.sublime-theme",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/CodeFormatter/tests/php/test1.php",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/BracketHighlighter/Example.sublime-keymap",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Side Bar.sublime-menu",
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-menu"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions",
+			"/Users/weilong/.oh-my-zsh"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\ ",
+			"Cache",
+			"ctrlp_use_caching",
+			"ClearCtrlPCache",
+			" 或 ",
+			"或",
+			"\\n\\d+\\s",
+			".  ",
+			"：",
+			"ifengws",
+			"submodule",
+			"zsh-autosuggestions",
+			"updated_at",
+			" ",
+			"echo",
+			"zsh_commits_old",
+			"zsh-commits",
+			"zsh-commits-now",
+			"zsh-commits-new",
+			"_zsh_autosuggest_strategy_",
+			"echo",
+			"_colon",
+			"_z_zsh_tab_completion",
+			"echo -E",
+			"Match",
+			"match",
+			"MATCH",
+			"echo",
+			"$line",
+			"$2",
+			"print",
+			"substr",
+			"done",
+			"sort",
+			"lines",
+			"_COLON_CMD",
+			"END",
+			"1",
+			"gsub",
+			"$",
+			"datafile",
+			"$HOME/.zsh_history",
+			"HISTFILE",
+			"hist_ignore_space",
+			"_colon",
+			"complete",
+			"${_COLON_CMD:-z}",
+			"_COLON_CMD",
+			"_Z_CMD",
+			"_z",
+			"compctl",
+			"_z_zsh_tab_completion",
+			"compctl",
+			"_Z_CMD",
+			"colonsource",
+			"history-search-backward",
+			"forward-word",
+			"forward-char",
+			"widgets",
+			"widget",
+			"_zsh_autosuggest_start",
+			"_zsh_autosuggest_orig_",
+			"widgets",
+			"Widgets",
+			"widgets",
+			"original_widget_name",
+			"autosuggest-orig-down-line-or-beginning-search",
+			"_zsh_autosuggest_invoke_original_widget",
+			"accept",
+			"ACCEPT",
+			"accept",
+			"\\n_zsh_autosuggest_.*() {",
+			"_zsh_autosuggest_.*() {",
+			"_zsh_autosuggest_",
+			"histkey",
+			"_zsh_autosuggest_",
+			"_zsh_autosuggest_accept",
+			"_zsh_autosuggest_invoke_original_widget",
+			"KEYMAP",
+			"echo $KEYMAP",
+			"$KEYMAP",
+			"KEYMAP",
+			"$KEYMAP",
+			"$1",
+			"_zsh_autosuggest_strategy_",
+			"echo -E \"",
+			"key",
+			"_zsh_autosuggest_start",
+			"_zsh_autosuggest_highlight_reset",
+			"_zsh_autosuggest_bind_widgets",
+			"_zsh_autosuggest_check_deprecated_config",
+			"_zsh_autosuggest_bind_widgets",
+			"_zsh_autosuggest_check_deprecated_config",
+			"Keypress",
+			"read Keypress ",
+			"_zsh_autosuggest_suggestion",
+			"echo -E ",
+			"echo",
+			"commits",
+			"~/.oh-my-zsh",
+			"$ZSH",
+			"$OSTYPE",
+			"OSTYPE",
+			"_upgrade_zsh",
+			"system",
+			"macos_version",
+			"RUBY_PLATFORM",
+			"macos_version",
+			"see lin",
+			"MacOS",
+			"mac",
+			"zsh-commits",
+			"rm -rf ",
+			"<real>",
+			"real",
+			"%B",
+			"user_symbol",
+			"fg",
+			"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE",
+			"region_highlight",
+			"orig_style",
+			"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE",
+			"fg",
+			"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE",
+			"zsh-commits",
+			"zsh_history-unique",
+			"$ZSH/.zsh",
+			".zsh_history-"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/weilong/.oh-my-zsh/tools/check_for_upgrade.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1754,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1394,
+								1394
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1403,
+										1404
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1367,
+										1368
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"origin_encoding": "ASCII",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1488953302.6,
+							"tabs_extra_last_activated_sheet_index": 0,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1111.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/weilong/.oh-my-zsh/tools/alias_tool.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20,
+								20
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"open_with_edit": true,
+							"origin_encoding": "ASCII",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1489370740.03,
+							"tabs_extra_last_activated_sheet_index": 1,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/weilong/.oh-my-zsh/templates/vimrc.zsh-template",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 444,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								423,
+								440
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/VimL/VimL.tmLanguage",
+							"tabs_extra_last_activated": 1489371321.1,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/weilong/.vim/bundle/ctrlp.vim/plugin/ctrlp.vim",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								926,
+								937
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"origin_encoding": "ASCII",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/VimL/VimL.tmLanguage",
+							"tabs_extra_last_activated": 1489461420.38,
+							"tabs_extra_last_activated_sheet_index": 3,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 349.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/weilong/.oh-my-zsh/tools/upgrade.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1823,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1228,
+								1228
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1263,
+										1264
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1209,
+										1210
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"origin_encoding": "ASCII",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1488794090.03,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 583.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/weilong/.oh-my-zsh/templates/zshrc.zsh-template",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4107,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3580,
+								3580
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.sublime-syntax",
+							"tabs_extra_last_activated": 1489461658.72,
+							"tabs_extra_last_activated_sheet_index": 5,
+							"tabs_extra_spawned": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2865.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/weilong/.oh-my-zsh/tools/install.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1520,
+								1520
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1546,
+										1547
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1507,
+										1508
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"incomplete_sync": null,
+							"origin_encoding": "ASCII",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.sublime-syntax",
+							"tab_size": 2,
+							"tabs_extra_last_activated": 1489461661.36,
+							"tabs_extra_last_activated_sheet_index": 6,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 43.0
+	},
+	"input":
+	{
+		"height": 47.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "zsh&vim.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"git.p",
+				".oh-my-zsh/plugins/git/git.plugin.zsh"
+			],
+			[
+				"bira",
+				".oh-my-zsh/themes/bira.zsh-theme"
+			],
+			[
+				"faov",
+				"Packages/User/favorite_files_list.json"
+			],
+			[
+				"ctran",
+				"Installed Packages/Ctranslator tool.sublime-package"
+			],
+			[
+				"monoka++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monkai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"mokai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"windowkey",
+				"Packages/Default/Default (Windows).sublime-keymap"
+			],
+			[
+				"winkey",
+				"Packages/User/Default (Windows).sublime-keymap"
+			],
+			[
+				"monokaithem",
+				"Packages/User/Color Highlighter/themes/Monokai.tmTheme"
+			],
+			[
+				"monokaitm",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"setimono",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"monokaitmthe",
+				"Packages/User/SublimeLinter/Monokai (SL).tmTheme"
+			],
+			[
+				"mono++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monok++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"mono",
+				"Packages/Theme - Default/Monokai.sublime-theme"
+			],
+			[
+				"monokai++",
+				"Packages/User/Monokai++.tmTheme"
+			],
+			[
+				"monokaitmt",
+				"Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme"
+			],
+			[
+				"monokai",
+				"Packages/Theme - Default/Monokai.sublime-theme"
+			],
+			[
+				".php",
+				"Packages/CodeFormatter/tests/php/test1.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 356.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

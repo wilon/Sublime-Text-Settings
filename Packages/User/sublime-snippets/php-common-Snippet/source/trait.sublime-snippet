@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+/**
+ * ${1:summary}
+ */
+trait ${2:Name}
+{
+    ${3:public }function ${4:name}(${5:params...})
+    {
+        ${6:// code...}
+    }
+}
+]]></content>
+    <scopeName>language_construct</scopeName>
+    <tabTrigger>trait</tabTrigger>
+    <scope>source.php - comment - constant.other.class - entity.name - meta.catch - meta.class - meta.function.arguments - meta.use - string - variable.other</scope>
+    <description>PHP: trait definition</description>
+</snippet>

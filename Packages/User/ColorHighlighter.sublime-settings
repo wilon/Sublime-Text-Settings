@@ -1,0 +1,7 @@
+{
+    // "Filled", "outlined", "none", "underlined" (solid, strippled, squiggly), "colored text" in ST3.
+    // #red
+    "enabled": true,
+    "style": "Filled",
+    "ha_style": "filled",
+}

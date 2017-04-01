@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[\{\$${1:vo}.${2:}\}$0]]></content>
+	<tabTrigger>tpvo</tabTrigger>
+	<scope>text.html</scope>
+	<description>TP:tpl: 输出变量</description>
+</snippet>
