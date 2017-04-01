@@ -1,0 +1,85 @@
+[
+    /**
+     * OSX快捷键
+     *
+     * f7 build 运行Python
+     */
+    // alt+q翻译
+    { "keys": ["ctrl+q"], "command": "auto_translate" },
+    // home end 键
+    { "keys": ["home"], "command": "move_to", "args": {"to": "bol", "extend": false} },
+    { "keys": ["end"], "command": "move_to", "args": {"to": "eol", "extend": false} },
+    { "keys": ["shift+home"], "command": "move_to", "args": {"to": "bol", "extend": true} },
+    { "keys": ["shift+end"], "command": "move_to", "args": {"to": "eol", "extend": true} },
+    { "keys": ["ctrl+home"], "command": "move_to", "args": {"to": "bof", "extend": false} },
+    { "keys": ["ctrl+end"], "command": "move_to", "args": {"to": "eof", "extend": false} },
+    { "keys": ["ctrl+shift+home"], "command": "move_to", "args": {"to": "bof", "extend": true} },
+    { "keys": ["ctrl+shift+end"], "command": "move_to", "args": {"to": "eof", "extend": true} },
+    // 快速注释
+    { "keys": ["f4"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["shift+f4"], "command": "toggle_comment", "args": { "block": true } },
+    // ctrl+super+上下：光标多行选中
+    { "keys": ["ctrl+super+up"], "command": "select_lines", "args": {"forward": false} },
+    { "keys": ["ctrl+super+down"], "command": "select_lines", "args": {"forward": true} },
+    // shift+super+上下：移动行
+    { "keys": ["shift+super+up"], "command": "swap_line_up" },
+    { "keys": ["shift+super+down"], "command": "swap_line_down" },
+    // 查找替换
+    { "keys": ["super+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
+    { "keys": ["super+shift+f"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+    // super+左右 左右跳单词
+    { "keys": ["super+left"], "command": "move", "args": {"by": "subwords", "forward": false} },
+    { "keys": ["super+right"], "command": "move", "args": {"by": "subword_ends", "forward": true} },
+    { "keys": ["super+shift+left"], "command": "move", "args": {"by": "subwords", "forward": false, "extend": true} },
+    { "keys": ["super+shift+right"], "command": "move", "args": {"by": "subword_ends", "forward": true, "extend": true} },
+    // f3 查找下一个
+    { "keys": ["f3"], "command": "find_next" },
+    { "keys": ["shift+f3"], "command": "find_prev" },
+    // super+ 【p r g ;】 转到文件、方法、行、单词
+    { "keys": ["super+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
+    { "keys": ["super+;"], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },
+    // super+e 删除行；
+    { "keys": ["super+e"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    // super+b 打开文件侧边栏
+    { "keys": ["super+b"], "command": "toggle_side_bar" },
+    // alt+← 上一个编辑位置
+    { "keys": ["alt+left"], "command": "jump_back" },
+    { "keys": ["alt+right"], "command": "jump_forward" },
+    // super+2/4左右切换标签，super+3切换最近一次的标签
+    { "keys": ["super+2"], "command": "prev_view" },
+    { "keys": ["super+3"], "command": "next_view_in_stack" },
+    { "keys": ["super+4"], "command": "next_view" },
+    // alt+e括号选择删除，super+t括号内容选中，alt+s折叠当前括号
+    {"keys": ["alt+e"], "command": "bh_remove_brackets"},
+    {
+        "no_outside_adj": true,
+        "keys": ["super+t"],
+        "command": "bh_key",
+        "args":
+        {
+            "lines" : true,
+            "plugin":
+            {
+                "type": ["__all__"],
+                "command": "bh_modules.bracketselect"
+            }
+        }
+    },
+    {
+        "keys": ["alt+s"],
+        "command": "bh_key",
+        "args":
+        {
+            "plugin": {
+                "type": ["__all__"],
+                "command" : "bh_modules.foldbracket"
+            }
+        }
+    },
+    // ctrl+super+p 新窗口打开项目
+    {
+        "keys": ["ctrl+super+p"],
+        "command": "project_manager", "args": {"action": "new"}
+    },
+
+]

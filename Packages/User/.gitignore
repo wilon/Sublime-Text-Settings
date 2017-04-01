@@ -3,13 +3,11 @@
 !/.gitignore
 
 !/Projects/
+!/favorite_files_list.json
 
 !/sublime-snippets/
 
 !/*.sublime-settings
-
+!/*.sublime-keymap
 !/*.tmTheme
-
 !/*.sublime-menu
-
-!/*.json

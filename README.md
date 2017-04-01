@@ -1,6 +1,4 @@
-#MySublimeText
-clone下代码，运行sublime_text.exe即可
-已汉化破解
+# My SublimeText Settings
 
 ## 插件推荐：
 > * Emmet:

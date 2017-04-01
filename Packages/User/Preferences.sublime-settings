@@ -39,6 +39,7 @@
 	"hot_exit": true,
 	"ignored_packages":
 	[
+		"Open-Include"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,

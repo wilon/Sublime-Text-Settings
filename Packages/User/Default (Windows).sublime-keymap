@@ -1,0 +1,100 @@
+[
+    /**
+     *      ###### sublime text 3 快捷键 ######
+     *
+     * ctrl+shift+p                控制中心；
+     * ctrl+p                      快速查找项目文件
+     * ctrl+;                      快速查找单词、f3查找下一个
+     * ctrl+r                      快速查找方法fun
+     * ctrl+g                      快速跳转至n行
+     *
+     *      ###### 光标移动 ######
+     * home/end                    光标移至行首
+     * ctrl+[ ctrl+]               缩进左右控制
+     * ctrl+m                      光标移动至括号内结束或开始的位置
+     *
+     *      ###### 功能 ######
+     * ctrl+/                      注释一行
+     * ctrl+shift+/                注释一块
+     *
+     *      ###### 行快速处理 ######
+     * ctrl+l                      选中整行
+     * ctrl+shift+l                先中多行同时编辑
+     * ctrl+shift+k                删除正行
+     * ctrl+k+k                    从光标处开始删除代码至行尾
+     * ctrl+enter                  在下一行插入新行
+     * ctrl+shift+enter            在上一行插入新行
+     * ctrl+alt+↑↓                 光标多选
+     *
+     * ctrl+shift+[                折叠选中代码代码
+     * ctrl+shift+]                展开折叠代码
+     * ctrl+j                      合并选中的多行代码为一行
+     * ctrl+t                      左右字母（选中文字）互换
+     *
+     * ctrl+k+0                    展开所有折叠代码
+     * ctrl+k+u                    转换大写
+     * ctrl+k+l                    转换小写
+     *
+     *      ###### 窗口&分屏 ######
+     * ctrl+k+b                    打开/关闭右侧窗口
+     * alt+shift+n                 分屏操作
+     */
+
+     // f4单行注释；f5区块注释；
+    { "keys": ["f4"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["f5"], "command": "toggle_comment", "args": { "block": true } },
+    { "keys": ["f6"], "command": "alignment" },
+    // ctrl+e 删除行；
+    { "keys": ["ctrl+e"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    // ctrl+b打开文件侧边栏
+    { "keys": ["ctrl+b"], "command": "toggle_side_bar" },
+    // alt+v打开剪切板
+    { "keys": ["alt+v"], "command": "paste_from_history" },
+    { "keys": ["alt+q"], "command": "auto_translate" },
+    // ctrl+v 粘贴并格式化
+    { "keys": ["ctrl+v"], "command": "paste_and_indent" },
+    // alt+← 上一个编辑位置
+    { "keys": ["alt+left"], "command": "jump_back" },
+    { "keys": ["alt+right"], "command": "jump_forward" },
+    // alt+2/4左右切换标签，alt+3切换最近一次的标签
+    { "keys": ["alt+2"], "command": "prev_view" },
+    { "keys": ["alt+4"], "command": "next_view" },
+    { "keys": ["alt+3"], "command": "next_view_in_stack" },
+    // alt+e括号选择删除，alt+s括号内容选中，alt+t折叠当前括号
+    {"keys": ["alt+e"], "command": "bh_remove_brackets"},
+    {
+        "no_outside_adj": true,
+        "keys": ["alt+s"],
+        "command": "bh_key",
+        "args":
+        {
+            "lines" : true,
+            "plugin":
+            {
+                "type": ["__all__"],
+                "command": "bh_modules.bracketselect"
+            }
+        }
+    },
+    {
+        "keys": ["alt+t"],
+        "command": "bh_key",
+        "args":
+        {
+            "plugin": {
+                "type": ["__all__"],
+                "command" : "bh_modules.foldbracket"
+            }
+        }
+    },
+    // ctrl+alt+p 新窗口打开项目
+    {
+        "keys": ["alt+p"],
+        "command": "project_manager", "args": {"action": "switch"}
+    },
+    {
+        "keys": ["ctrl+alt+p"],
+        "command": "project_manager", "args": {"action": "new"}
+    },
+
+]
