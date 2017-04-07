@@ -1,3 +1,5 @@
 *
 !.gitignore
-!License.sublime_license
+!License*
+
+License.sublime_license

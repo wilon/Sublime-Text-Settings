@@ -7,7 +7,6 @@
 	],
 	"in_process_packages":
 	[
-		"Open-Include"
 	],
 	"installed_packages":
 	[
@@ -34,7 +33,6 @@
 		"Markdown Preview",
 		"Markdown Table Formatter",
 		"MarkdownHighlighting",
-		"Open-Include",
 		"Origami",
 		"Package Control",
 		"ProjectManager",

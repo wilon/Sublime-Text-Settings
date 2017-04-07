@@ -11,3 +11,6 @@
 !/*.sublime-keymap
 !/*.tmTheme
 !/*.sublime-menu
+
+Preferences.sublime-settings
+encoding_cache.json
