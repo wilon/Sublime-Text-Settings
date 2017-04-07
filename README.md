@@ -15,7 +15,13 @@
     git merge origin master
 ```
 
-4. 重启SublimeText，等待插件配置
+4. 配置 License、Preferences
+
+    `cp -f $packages/Local/License (PLATFORM).sublime_license $packages/Local/License.sublime_license `
+
+    `cp -f $packages/User/Preferences (PLATFORM).sublime-settings $packages/User/Preferences.sublime-settings`
+
+5. 重启 SublimeText，等待插件配置
 
 ## 插件推荐：
 
