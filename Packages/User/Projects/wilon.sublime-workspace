@@ -108,10 +108,28 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/weilong/web/github/mynote/LinuxNote.php",
+			"file": "/Users/weilong/web/github/wilon.github.io/blog/javascripts/search.js",
 			"settings":
 			{
-				"buffer_size": 6289,
+				"buffer_size": 9404,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/web/github/wilon.github.io/index.html",
+			"settings":
+			{
+				"buffer_size": 3298,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/weilong/Downloads/ifengfile/cmdb.php",
+			"settings":
+			{
+				"buffer_size": 582,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -124,10 +142,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 269.0,
-		"last_filter": "inspa",
+		"height": 369.0,
+		"last_filter": "marpre",
 		"selected_items":
 		[
+			[
+				"marpre",
+				"Markdown Preview: Preview in Browser"
+			],
 			[
 				"inspa",
 				"Package Control: Install Package"
@@ -257,11 +279,20 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/weilong/web/github/mynote",
-		"/Users/weilong/web/github/snail-hosts"
+		"/Users/weilong/web/github/wilon.github.io/blog",
+		"/Users/weilong/web/github/wilon.github.io/blog/javascripts"
 	],
 	"file_history":
 	[
+		"/Users/weilong/web/github/wilon.github.io/README.md",
+		"/Users/weilong/web/github/mynote/script/36337.js",
+		"/Users/weilong/web/github/wilon.github.io/index.html",
+		"/Users/weilong/web/github/wilon.github.io/gulpfile.js",
+		"/Users/weilong/web/github/mynote/MySqlNote.sql",
+		"/Users/weilong/web/github/mynote/oldnote/GitNote.php",
+		"/Users/weilong/web/github/wilon.github.io/.gitmodules",
+		"/Users/weilong/web/github/wilon.github.io/blog/index.html",
+		"/Users/weilong/web/github/mynote/oldnote/MySqlNote.sql",
 		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages.old/User/Color Highlighter/themes/Monokai++.tmTheme",
 		"/Users/weilong/web/github/wilon.github.io/data/php.md",
 		"/Users/weilong/web/github/wilon.github.io/data/software.md",
@@ -269,14 +300,10 @@
 		"/Users/weilong/web/github/wilon.github.io/blog/stylesheets/search.css",
 		"/Users/weilong/web/github/github-ribbons-collections/README.md",
 		"/Users/weilong/web/github/wilon.github.io/data/svn.md",
-		"/Users/weilong/web/github/wilon.github.io/blog/index.html",
 		"/Users/weilong/web/github/github-ribbons-collections/index.html",
 		"/Users/weilong/web/github/github-ribbons-collections/ribbons_config.js",
-		"/Users/weilong/web/github/wilon.github.io/index.html",
 		"/Users/weilong/web/github/wilon.github.io/blog/javascripts/search.js",
 		"/Users/weilong/web/github/wilon.github.io/package.json",
-		"/Users/weilong/web/github/wilon.github.io/gulpfile.js",
-		"/Users/weilong/web/github/wilon.github.io/README.md",
 		"/Users/weilong/web/github/wilon.github.io/test.html",
 		"/Users/weilong/web/github/wilon.github.io/.gitignore",
 		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/php.sublime-build",
@@ -296,7 +323,6 @@
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/README.md",
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/css/styles.css",
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/data/index.md",
-		"/Users/weilong/web/github/wilon.github.io/.gitmodules",
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/src/data/index-cn.md",
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/node_modules/metalsmith-changed/README.md",
 		"/Users/weilong/web/github/wilon.github.io/jquery-cheatsheet/tmp/metalsmith-changed-ctimes.json",
@@ -336,7 +362,6 @@
 		"/Users/weilong/web/github/oh-my-ssh/ssh.php",
 		"/Users/weilong/web/github/stforum/vendor/s9e/text-formatter/src/Utils/Http/Clients/Curl.php",
 		"/Users/weilong/web/github/oh-my-ssh/id_rsa_pub_authcode",
-		"/Users/weilong/web/github/mynote/MySqlNote.sql",
 		"/Users/weilong/web/github/simple-php-debug/composer.json",
 		"/Users/weilong/web/github/simple-php-debug/test/better.php",
 		"/Users/weilong/web/github/simple-php-debug/test/test2.php",
@@ -369,7 +394,7 @@
 	],
 	"find":
 	{
-		"height": 45.0
+		"height": 47.0
 	},
 	"find_in_files":
 	{
@@ -389,6 +414,13 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"+=",
+			"使用：Chrome打开https",
+			"样式",
+			"mynote",
+			"wilonBlogdata",
+			"mynote",
+			"wilonBlogdata",
 			"#list-itme",
 			"valToHTML",
 			"url",
@@ -509,14 +541,7 @@
 			"valToHTML",
 			"creatListHTML",
 			"alan",
-			"creatListHTML",
-			"+\"",
-			"\"+",
-			"kw",
-			"enter the",
-			"imageresize",
-			"md",
-			"some_notes"
+			"creatListHTML"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -534,24 +559,267 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/weilong/web/github/mynote/LinuxNote.php",
-					"semi_transient": true,
+					"file": "/Users/weilong/web/github/wilon.github.io/blog/javascripts/search.js",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6289,
+						"buffer_size": 9404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2479,
-								2479
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai++.tmTheme",
+							"incomplete_sync": null,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"tabs_extra_last_activated": 1491381851.16,
+							"tabs_extra_last_activated_sheet_index": 0,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5289.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/weilong/web/github/wilon.github.io/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3298,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								403,
+								409
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										398,
+										402
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/tag.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										398,
+										402
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai++.tmTheme",
+							"incomplete_sync": null,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"tabs_extra_last_activated": 1491386013.03,
+							"tabs_extra_last_activated_sheet_index": 1,
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/weilong/Downloads/ifengfile/cmdb.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 582,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								582
 							]
 						],
 						"settings":
@@ -579,70 +847,69 @@
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
 							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai++.tmTheme",
 							"incomplete_sync": null,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"tabs_extra_last_activated": 1491021751.74,
-							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true,
-							"translate_tabs_to_spaces": true
+							"tabs_extra_last_activated": 1491472837.03,
+							"tabs_extra_last_activated_sheet_index": 2,
+							"tabs_extra_spawned": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2603.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

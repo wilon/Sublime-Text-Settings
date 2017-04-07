@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"cmd",
+				"cmdbData"
+			],
+			[
+				"pro",
+				"protected\t(SyncCmdbCommand.php)"
+			],
+			[
+				"sy",
+				"syncRes"
+			],
+			[
+				"arrke",
+				"array_keys〔function〕"
+			],
+			[
+				"abs",
+				"abstract〔keyword〕"
+			],
+			[
+				"req",
+				"req\trequire …"
+			],
+			[
 				"tab",
 				"table"
 			],
@@ -60,10 +84,6 @@
 				"json_decode〔function〕"
 			],
 			[
-				"req",
-				"req1\trequire_once …"
-			],
-			[
 				"sus",
 				"success\t(index.php)"
 			],
@@ -74,10 +94,6 @@
 			[
 				"allu",
 				"allUserName"
-			],
-			[
-				"pro",
-				"protected\t(ItemBaseTrait.php)"
 			],
 			[
 				"defi",
@@ -136,11 +152,13 @@
 	"buffers":
 	[
 		{
-			"file": "/etc/hosts",
+			"contents": "<?php\n\nuse Illuminate\\Database\\Capsule\\Manager as DB;\nuse Illuminate\\Events\\Dispatcher;\nuse Illuminate\\Container\\Container;\n\n/**\n * 接口API\n * $Id: api.php 15018 2016-10-27 16:46:13 wangwl $\n */\n\nclass Controller_Api extends Controller_Base\n{\n    /**\n     * 分组\n     */\n    public function actionGetIpgroup($self = false)\n    {\n        $uid = $_GET['uid'];\n        if (!$uid) {\n            $this->msg([], 101, 'need uid');\n        }\n        $userId = DB::table('jumpbox_user')\n            ->where('user_sso_uid', $uid)\n            ->where('user_status', '>', 0)\n            ->orderBy('user_add_time', 'desc')\n            ->first()\n            ->user_id;\n        if ($userId < 1) {\n            $this->msg($userId, 101, 'no user');\n        }\n        $ipgroupRes = DB::table('jumpbox_user_ipgroup')\n            ->rightJoin('jumpbox_ipgroup', 'jumpbox_user_ipgroup.ipgroup_id', '=', 'jumpbox_ipgroup.ipgroup_id')\n            ->where('user_id', $userId)\n            ->where('ipgroup_status', '>', 0)\n            ->get();\n        if ($self) {\n            return $ipgroupRes;\n        }\n        $this->msg($ipgroupRes);\n    }\n\n    /**\n     * 分组\n     */\n    public function actionGetIp($ipgroupId = 0, $self = false)\n    {\n        $ipgroupId = $ipgroupId ?: $_GET['ipgroup_id'];\n        if (!$ipgroupId) {\n            if ($self) {\n                return false;\n            } else {\n                $this->msg([], 101, 'need ipgroup_id');\n            }\n        }\n        $ipgroupId = DB::table('jumpbox_ipgroup')\n            ->where('ipgroup_id', $ipgroupId)\n            ->where('ipgroup_status', '>', 0)\n            ->first()\n            ->ipgroup_id;\n        if ($ipgroupId < 1) {\n            if ($self) {\n                return false;\n            } else {\n                $this->msg([], 102, 'no ipgroup');\n            }\n        }\n        $ipRes = DB::table('jumpbox_ipgroup_ip')\n            ->rightJoin('jumpbox_ip', 'jumpbox_ip.ip_id', '=', 'jumpbox_ipgroup_ip.ip_id')\n            ->where('ipgroup_id', $ipgroupId)\n            ->get();\n        if ($self) {\n            return $ipRes;\n        }\n        $this->msg($ipRes);\n    }\n\n    /**\n     * 用户所有IP列表\n     */\n    public function actionList()\n    {\n        // 判断参数\n        $uid = $_GET['uid'];\n        if (!$uid) {\n            $this->msg([], 101, 'need uid');\n        }\n        // 获取所有数据\n        $ipgroupRes = $this->actionGetIpgroup(true);\n        foreach ($ipgroupRes as $ipgroup) {\n            $ipgroupIdArr[] = $ipgroup->ipgroup_id;\n        }\n        $ipRes = DB::table('jumpbox_ipgroup_ip')\n            ->rightJoin('jumpbox_ip', 'jumpbox_ip.ip_id', '=', 'jumpbox_ipgroup_ip.ip_id')\n            ->whereIn('ipgroup_id', $ipgroupIdArr)\n            ->get();\n        $this->msg($ipRes);\n    }\n\n    /**\n     * 搜索\n     */\n    public function actionSearch()\n    {\n        // 判断参数\n        $uid = $_GET['uid'];\n        if (!$uid) {\n            $this->msg([], 101, 'need uid');\n        }\n        $keyword = trim($_GET['keyword']);\n        if (!$keyword) {\n            $this->msg([], 101, 'need keyword');\n        }\n        $keyword = \"/$keyword/i\";\n        // 获取所有数据\n        $ipgroupRes = $this->actionGetIpgroup(true);\n        foreach ($ipgroupRes as $ipgroup) {\n            $ipgroupIdArr[] = $ipgroup->ipgroup_id;\n        }\n        $ipRes = DB::table('jumpbox_ipgroup_ip')\n            ->rightJoin('jumpbox_ip', 'jumpbox_ip.ip_id', '=', 'jumpbox_ipgroup_ip.ip_id')\n            ->whereIn('ipgroup_id', $ipgroupIdArr)\n            ->get();\n        foreach ($ipRes as $ip) {\n            $ipResBetter[$ip->ipgroup_id][] = $ip;\n        }\n        // 筛选结果\n        $searchRes = [];\n        foreach ($ipgroupRes as $ipgroup) {\n            $ipgroup->ip_list = $ipResBetter[$ipgroup->ipgroup_id] ?: [];\n            if (preg_match($keyword, $ipgroup->ipgroup_name)) {\n                $searchRes[] = $ipgroup;\n                continue;\n            }\n            if (preg_match($keyword, $ipgroup->ipgroup_desc)) {\n                $searchRes[] = $ipgroup;\n                continue;\n            }\n            if (!$ipgroup->ip_list) {\n                continue;\n            }\n            foreach ($ipgroup->ip_list as $k => $ip) {\n                if (!preg_match($keyword, $ip->ip_address) && !preg_match($keyword, $ip->ip_name)) {\n                    unset($ipgroup->ip_list[$k]);\n                }\n            }\n            if (!$ipgroup->ip_list) {\n                continue;\n            }\n            $searchRes[] = $ipgroup;\n        }\n        $this->msg($searchRes);\n    }\n\n    /**\n     * key\n     */\n    public function actionKey()\n    {\n        /**\n         * 获取pub key\n         */\n        if (!$_POST['uid'] && $_GET['uid']) {\n            $userIdRsaPub = DB::table('jumpbox_user')\n                ->select('user_id_rsa_pub')\n                ->where('user_sso_uid', $_GET['uid'])\n                ->orderBy('user_add_time', 'desc')\n                ->first()\n                ->user_id_rsa_pub;\n            if ($userIdRsaPub) {\n                $this->msg($userIdRsaPub);\n            } else {\n                $this->msg($userIdRsaPub, 101, 'no id_rsa.pub');\n            }\n        }\n        /**\n         * 写入pub key\n         */\n        $uid = $_REQUEST['uid'];\n        if (!$uid) {\n            $this->msg($_POST, 101, 'need uid');\n        }\n        // 获取用户域信息\n        require_once APP_PATH . '/classes/lib/sso.php';\n        $sso = new Lib_Sso();\n        $userInfo = $sso->getUserInfoFromSso($uid);\n        if (empty($userInfo['email'])) {\n            $this->msg($userInfo, 102, '域ID错误，没有此用户');\n        }\n        // 判断有此用户吗\n        $user = DB::table('jumpbox_user')\n            ->where('user_sso_uid', $uid)\n            ->first();\n        if ($user) {\n            $updateUser = DB::table('jumpbox_user')\n            ->where('user_sso_uid', $uid)\n            ->update([\n                'user_id_rsa_pub' => $_REQUEST['id_rsa_pub'],\n            ]);\n            $this->msg($updateUser);\n        }\n        // 新建用户\n        $userData = [\n            'user_sso_uid' => $uid,\n            'user_name' => $userInfo['name'],\n            'user_email' => $userInfo['email'],\n            'user_add_time' => time(),\n            'user_id_rsa_pub' => $_REQUEST['id_rsa_pub'],\n        ];\n        $userId = DB::table('jumpbox_user')\n            ->insertGetId($userData);\n        if ($userId < 1) {\n            $this->msg([], 103, '数据库错误！');\n        }\n\n        require_once APP_PATH . '/classes/lib/email.php';\n        $subject = $userInfo['name'] . '注册了跳板机';\n        $content = \"您好:<br>    {$userInfo['name']}({$uid})刚刚注册了跳板机。\";\n        $content = str_replace([\"\\n\", \" \"], ['<br>', '&nbsp;'], $content);\n        $emailRes = emailToUser('xuliang@ifeng.com', $subject, $content, null, 'zhaosy@ifeng.com');\n        file_put_contents(APP_PATH . '/cache/newUserEmail.log', date('Y-m-d H:i:s'). \"\\t$emailRes\\t{$userData['user_id_rsa_pub']}\\n\", FILE_APPEND | LOCK_EX);\n        $this->msg($userData['user_id_rsa_pub']);\n    }\n\n    public function actionGetOrder()\n    {\n        $h = $_GET['limit_hour'];\n        if ($h >= 0) {\n            $h = $h ?: 6;\n            $time = time() - $h * 3600;\n            $where[] = ['add_time', '>', $time];\n        }\n        $where[] = ['status', 0];\n        $res = DB::table('jumpbox_user_add_ip')\n            ->rightJoin('jumpbox_user', 'jumpbox_user.user_id', '=', 'jumpbox_user_add_ip.user_id')\n            ->where($where)\n    #        ->where('order_id', '<>', '')\n            ->orderBy('uai_id', 'desc')\n            ->limit(20)\n            ->get();\n        $this->msg($res);\n    }\n\n    public function actionGetIdcOrder()\n    {\n        simple_log(APP_PATH . '/cache/api.log', $_GET, $_POST);\n        $h = $_GET['limit_hour'];\n        if ($h >= 0) {\n            $h = $h ?: 6;\n            $time = time() - $h * 3600;\n            $where[] = ['add_time', '>', $time];\n        }\n        $where[] = ['status', 2];\n        $res = DB::table('jumpbox_user_add_ip')\n            ->rightJoin('jumpbox_user', 'jumpbox_user.user_id', '=', 'jumpbox_user_add_ip.user_id')\n            ->where($where)\n    #        ->where('order_id', '<>', '')\n            ->orderBy('uai_id', 'desc')\n            ->limit(20)\n            ->get();\n        $this->msg($res);\n    }\n\n    public function actionChangeOrder()\n    {\n        $uaiId = intval($_POST['uai_id']);\n        if ($uaiId < 1) $this->msg([], 401, 'error uai_id');\n        $res = DB::table('jumpbox_user_add_ip')\n                ->where('uai_id', $uaiId)\n                ->update(['status' => 1]);\n        $this->msg($res);\n    }\n\n    public function actionTest()\n    {\n        require APP_PATH . '/classes/model/ip.php';\n        $m = new Model_Ip();\n        $res = $m->getIpgroupByIp('10.90.4.54');\n        die(json_encode($res));\n    }\n\n    public function actionUser()\n    {\n        require APP_PATH . '/classes/model/ip.php';\n        $m = new Model_Ip();\n        $res = $m->getIpgroupByIp('10.90.4.54');\n        die(json_encode($res));\n    }\n\n    public function actionEmail()\n    {\n        $uid = $_REQUEST['uid'];\n        if (!$uid) {\n            $this->msg([], 101, 'need uid');\n        }\n        require_once APP_PATH . '/classes/lib/sso.php';\n        $sso = new Lib_Sso();\n        $userInfo = $sso->getUserInfoFromSso($uid);\n        if (empty($userInfo['email'])) {\n            $this->msg($userInfo, 102, '域ID错误，没有此用户');\n        }\n        require_once APP_PATH . '/classes/lib/email.php';\n        $subject = $_REQUEST['subject'] ?: '跳板机申请说明';\n        $content = $_REQUEST['content'] ?: <<<EOF\n\n{$userInfo['name']}您好:\n\n    您正在申请的是跳板机服务，请仔细阅读以下说明以便您能顺利开通该服务。\n\n    跳板机的服务开通的描述文档见：<a href=\"faq.jumpbox.ifengidc.com\">http://faq.jumpbox.ifengidc.com</a>\n\n    只有当您按照该文档描述开通了跳板机服务之后，您才可以开始您的服务器申请。\n\n    如果你在使用和开通过程中遇到任何问题请联系应急响应组的 徐亮，我们会及时帮您解决。\n\n    当您申请完跳板机后，您的服务器申请流程在PMS上的路径为：\n\n        <code>技术部>运维中心>系统权限相关>申请服务器权限</code>\n\n    非常感谢。\nEOF;\n        $content = str_replace([\"\\n\", \" \"], ['<br>', '&nbsp;'], $content);\n        $emailRes = emailToUser($userInfo, $subject, $content, null, ['xuliang@ifeng.com', 'zhaosy@ifeng.com']);\n        if ($emailRes == true) {\n            $this->msg(true);\n        } else {\n            $this->msg($emailRes, 103, '发送邮件错误');\n        }\n    }\n}\n",
+			"file": "/Users/weilong/web/ifeng/jumpbox/classes/controller/api.php",
+			"file_size": 10520,
+			"file_write_time": 131347075800000000,
 			"settings":
 			{
-				"buffer_size": 141363,
-				"encoding": "UTF-8",
+				"buffer_size": 10144,
 				"line_ending": "Unix"
 			}
 		}
@@ -152,10 +170,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 89.0,
-		"last_filter": "faopen",
+		"height": 289.0,
+		"last_filter": "faop",
 		"selected_items":
 		[
+			[
+				"faop",
+				"Favorite Files: Open File(s)"
+			],
+			[
+				"ssyphp",
+				"Set Syntax: PHP"
+			],
 			[
 				"faopen",
 				"Favorite Files: Open File(s)"
@@ -233,10 +259,6 @@
 				"Favorite Files: Open File(s)"
 			],
 			[
-				"ssyphp",
-				"Set Syntax: PHP"
-			],
-			[
 				"ssysql",
 				"Set Syntax: SQL"
 			],
@@ -297,7 +319,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 593.0
+		"width": 656.0
 	},
 	"console":
 	{
@@ -321,23 +343,39 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/weilong/web/ifeng/security",
-		"/Users/weilong/web/ifeng/security/classes",
-		"/Users/weilong/web/ifeng/security/classes/controller",
-		"/Users/weilong/web/ifeng/security/view",
-		"/Users/weilong/web/ifeng/security/wwwroot",
-		"/Users/weilong/web/ifeng/security/wwwroot/static"
+		"/Users/weilong/web/ifeng/jumpbox",
+		"/Users/weilong/web/ifeng/jumpbox/classes",
+		"/Users/weilong/web/ifeng/jumpbox/classes/controller"
 	],
 	"file_history":
 	[
+		"/Users/weilong/web/ifeng/jumpbox/composer.json",
+		"/Users/weilong/web/ifeng/jumpbox/classes/console/CommandBase.php",
+		"/Users/weilong/web/ifeng/jumpbox/cache/sync-cmdb.log",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/wilon/simple-php-debug/src/SimpleDebug.php",
+		"/Users/weilong/web/ifeng/jumpbox/classes/console/SyncCmdbCommand.php",
+		"/Users/weilong/web/ifeng/jumpbox/console",
+		"/Users/weilong/web/github/mynote/MySqlNote.sql",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/illuminate/database/Capsule/Manager.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/illuminate/support/Facades/Facade.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/psr/log/Psr/Log/LoggerInterface.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/illuminate/support/Facades/Log.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/symfony/console/Input/InputInterface.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/illuminate/log/Writer.php",
+		"/Users/weilong/web/ifeng/ossec/vendor/illuminate/support/Facades/Log.php",
+		"/Users/weilong/web/ifeng/ossec/vendor/illuminate/support/Facades/Facade.php",
+		"/Users/weilong/web/ifeng/ossec/vendor/illuminate/contracts/Logging/Log.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/symfony/console/Command/Command.php",
+		"/Users/weilong/Downloads/ifengfile/cmdb.php",
+		"/Users/weilong/web/ifeng/jumpbox/vendor/composer/autoload_real.php",
+		"/Users/weilong/web/github/index.php",
+		"/etc/hosts",
 		"/Users/weilong/web/ifeng/security/classes/controller/base.php",
 		"/Users/weilong/web/ifeng/security/classes/controller/hostapi.php",
 		"/Users/weilong/web/ifeng/security/wwwroot/index.php",
 		"/Users/weilong/web/ifeng/security/wwwroot/static/host_api_doc.html",
 		"/Users/weilong/web/ifeng/noah3/modules/app/app.php",
 		"/Users/weilong/web/ifeng/noah3/modules/route/route.php",
-		"/etc/hosts",
-		"/Users/weilong/web/github/mynote/MySqlNote.sql",
 		"/Users/weilong/web/ifeng/jumpbox/wwwroot/js/controllers.js",
 		"/Users/weilong/web/ifeng/security/readme.md",
 		"/Users/weilong/Downloads/wx_sample.php",
@@ -363,7 +401,6 @@
 		"/Users/weilong/Downloads/host-switch-plus (1).json",
 		"/Users/weilong/Downloads/installer (1)",
 		"/Users/weilong/web/ifeng/cert-api/cert_client_new.php",
-		"/Users/weilong/web/github/index.php",
 		"/Users/weilong/Documents/RewinEdit/install.bat",
 		"/Users/weilong/web/ifeng/jumpbox/classes/controller/api.php",
 		"/Users/weilong/web/ifeng/jumpbox/classes/controller/pmsapi.php",
@@ -376,7 +413,6 @@
 		"/Users/weilong/web/ifeng/jumpbox/wwwroot/apidoc/public.html",
 		"/Users/weilong/web/ifeng/jumpbox/wwwroot/apidoc/index.html",
 		"/Users/weilong/web/ifeng/jumpbox/tool",
-		"/Users/weilong/web/ifeng/jumpbox/composer.json",
 		"/Users/weilong/web/ifeng/jumpbox/classes/controller/user.php",
 		"/Users/weilong/web/ifeng/jumpbox/classes/lib/sso.php",
 		"/Users/weilong/web/ifeng/jumpbox/classes/model/user.php",
@@ -440,33 +476,18 @@
 		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/favorite_files_list.json",
 		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/sublimetextweb.sublime-project",
 		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/wilon.sublime-project",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/ifeng.sublime-project",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/weilong/Downloads/rc4(1).py",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Installed Packages/Ctranslator tool.sublime-package",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Monokai++.tmTheme",
-		"/Users/weilong/Downloads/tmp7e79d544.png",
-		"/Users/weilong/Downloads/svn_extractor.py",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Seti Monokai (SL).tmTheme",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Monokai (SL).tmTheme",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Theme - Default/Monokai.sublime-theme",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/CodeFormatter/tests/php/test1.php",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/BracketHighlighter/Example.sublime-keymap",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/Default/Side Bar.sublime-menu",
-		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-menu"
+		"/Users/weilong/Library/Application Support/Sublime Text 3/Packages/User/Projects/ifeng.sublime-project"
 	],
 	"find":
 	{
-		"height": 45.0
+		"height": 47.0
 	},
 	"find_in_files":
 	{
 		"height": 117.0,
 		"where_history":
 		[
+			"/Users/weilong/web/ifeng/jumpbox/vendor/illuminate",
 			"/Users/weilong/web/ifeng/jumpbox/classes/controller",
 			"/Users/weilong/web/ifeng/security",
 			"/Users/weilong/web/ifeng/jumpbox/classes"
@@ -477,6 +498,39 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"缓存",
+			"success",
+			"\\n",
+			",",
+			"getFacadeRoot",
+			"app",
+			"getFacadeRoot",
+			"getFacadeApplication",
+			"$app",
+			"resolveFacadeInstance",
+			"getFacadeRoot",
+			"resolveFacadeInstance",
+			"getFacadeAccessor",
+			"resolveFacadeInstance",
+			"getFacadeRoot",
+			"A facade root has not been set",
+			"capsule",
+			"Capsule",
+			"DB",
+			"capsule",
+			"syncRes",
+			"DB",
+			"MessageLogged",
+			"writeLog",
+			"success",
+			"comment",
+			"cmdbFile",
+			"string",
+			"__construct",
+			"construct",
+			"SyncCmdbCommand",
+			"pbox\\\\Comm",
+			"DTOptionsBuilderFn",
 			"http://api",
 			"api",
 			"seclet",
@@ -571,45 +625,12 @@
 			"hosts",
 			"ports",
 			"hosts",
-			"hostsData",
-			"servicestablename",
-			"ports",
-			"risk_",
-			"hostsTableName",
-			"hostsTableNa",
-			"die",
-			"cahce",
-			".json",
-			"hostsTableName",
-			"hostTableName",
-			"varchar",
-			"php55w",
-			"<<<",
-			"5a85d1fb464859359b7915e60ba46fd4",
-			"authkey",
-			"CUT",
-			"php",
-			"animated",
-			"IpgroupModifyCtrl",
-			"IpgroupListCtrl",
-			"span",
-			"pushState",
-			"ipgroup",
-			"_POST",
-			"getFirst",
-			"status",
-			"getIpgroup",
-			"actionGetIpgroup",
-			"user_id",
-			"getIpgroupInfo",
-			"Model",
-			"notify",
-			"getIpgroupInfo"
+			"hostsData"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
 		],
@@ -627,34 +648,50 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/etc/hosts",
+					"file": "/Users/weilong/web/ifeng/jumpbox/classes/controller/api.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 141363,
+						"buffer_size": 10144,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								337,
-								337
+								8685,
+								8685
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.locations":
 							{
 								"close":
 								{
+									"1":
+									[
+										8694,
+										8695
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										8676,
+										8677
+									]
 								},
 								"unmatched":
 								{
@@ -662,46 +699,21 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -712,6 +724,31 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
@@ -719,17 +756,17 @@
 								"bh_tag_content"
 							],
 							"incomplete_sync": null,
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tabs_extra_last_activated": 1490749836.36,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"tabs_extra_last_activated": 1491472841.13,
 							"tabs_extra_last_activated_sheet_index": 0,
-							"tabs_extra_spawned": true
+							"tabs_extra_spawned": true,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 7926.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
