@@ -2,7 +2,7 @@
 
 !/.gitignore
 
-!/Projects/
+!/Projects*
 !/favorite_files_list.json
 
 !/sublime-snippets/
