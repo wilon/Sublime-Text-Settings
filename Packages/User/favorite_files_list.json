@@ -1,7 +1,6 @@
 {
     "files": [
         "/Users/weilong/web/github/mynote/wilon.txt",
-        "C:/xampp/php/php.ini",
         "/etc/hosts",
         "C:/xampp/apache/conf/extra/httpd-vhosts.conf",
         "/Users/weilong/web/github/mynote/discuz.php",
@@ -14,15 +13,13 @@
         "/Users/weilong/web/github/mynote/LinuxNote.php",
         "/Users/weilong/web/github/mynote/PregNote.php",
         "/Users/weilong/web/github/index.php",
-        "C:/MySublimeText/Data/Packages/User/WwlVim(SL).tmTheme",
         "/Users/weilong/web/github/mynote/DWZ.php",
         "/Users/weilong/web/github/17house/17house_info.php",
         "/Users/weilong/web/github/17house/news_17house_readme.md",
         "/Users/weilong/web/github/mynote/GitNote.php",
-        "C:/Program Files (x86)/Vim/tips",
         "/Users/weilong/web/github/17house/pigcms.txt",
         "/Users/weilong/.zshrc",
-        "C:/xampp/mysql/bin/my.ini"
+        "C:\\Windows\\System32\\drivers\\etc\\HOSTS"
     ],
     "groups": {},
     "version": 1

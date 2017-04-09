@@ -29,8 +29,7 @@
 		".DS_Store",
 		"*.class",
 		"*.psd",
-		"*.db",
-		"*.sublime-workspace"
+		"*.db"
 	],
 	"font_face": "Consolas",
 	"font_size": 15,
