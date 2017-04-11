@@ -3,7 +3,7 @@
     "verbose": false,
 
     // scan document to format tables when saving
-    "autoformat_on_save": true,
+    "autoformat_on_save": false,
 
     // spaces between "|" and cell's text
     "margin": 2,

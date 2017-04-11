@@ -1,0 +1,41 @@
+[
+    { "command": "tabs_extra_close", "args": { "group": -1, "index": -1, "close_type": "all" }, "caption": "关闭所有标签" },
+    { "command": "tabs_extra_close", "args": { "group": -1, "index": -1, "close_type": "other", "unsaved_prompt": false }, "caption": "关闭其他所有标签" },
+    { "caption": "-" },
+    { "command": "reopen_last_file", "caption": "恢复标签" },
+    { "caption": "-" },
+    { "command": "tabs_extra_view_wrapper", "args": {"group": -1, "index": -1, "command": "clone_file"}, "caption": "克隆标签" },
+    { "caption": "-" },
+    { "command": "tabs_extra_view_wrapper", "args": {"group": -1, "index": -1, "command": "save"}, "caption": "保存" },
+    { "command": "tabs_extra_view_wrapper", "args": {"group": -1, "index": -1, "command": "prompt_save_as"}, "caption": "另存为..." },
+    { "command": "save_all", "caption": "保存所有" },
+    { "caption": "-" },
+    { "command": "tabs_extra_delete", "args": {"group": -1, "index": -1}, "caption": "删除文件" },
+    { "caption": "-" },
+    { "command": "tabs_extra_rename", "args": {"group": -1, "index": -1}, "caption": "重命名..." },
+    { "command": "tabs_extra_duplicate", "args": {"group": -1, "index": -1}, "caption": "创建副本..." },
+    { "caption": "-" },
+    { "command": "tabs_extra_file", "args": {"group": -1, "index": -1, "command": "open_dir", "args": {"dir": "$file_path", "file": "$file_name"}}, "caption": "打开所在文件夹..." },
+    { "command": "tabs_extra_file", "args": {"group": -1, "index": -1, "command": "reveal_in_side_bar"}, "caption": "在左侧栏显示..." },
+
+    { "command": "tabs_extra_file_path", "args": {"group": -1, "index": -1, "path_type": "path"}, "caption": "复制文件路径" },
+    { "command": "tabs_extra_file_path", "args": {"group": -1, "index": -1, "path_type": "name"}, "caption": "复制文件名" },
+    { "caption": "-" },
+    { "command": "tabs_extra_revert", "args": {"group": -1, "index": -1, "command": "revert"}, "caption": "恢复文件" },
+    { "caption": "-" },
+    {
+        "caption": "按...排序",
+        "children":
+        [
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.name", "reverse": false}, "caption": "文件名" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.path", "reverse": false}, "caption": "路径" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.modified", "reverse": false}, "caption": "最后修改" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.created", "reverse": false}, "caption": "创建时间" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.type", "reverse": false}, "caption": "后缀名" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.size", "reverse": false}, "caption": "文件大小" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.activated", "reverse": false}, "caption": "最新活动文件" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.syntax", "reverse": false}, "caption": "语法" },
+            { "command": "tabs_extra_sort", "args": {"group": -1, "sort_by": "TabsExtra.sort.reverse", "reverse": false}, "caption": "反向排序" }
+        ]
+    }
+]

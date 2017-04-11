@@ -1,16 +1,17 @@
 /*
-
 !/.gitignore
 
 !/Projects/
-!/favorite_files_list.json
 
 !/sublime-snippets/
 
+!/TabsExtra/
+
+# this dir
 !/*.sublime-settings
 !/*.sublime-keymap
 !/*.tmTheme
 !/*.sublime-menu
-
+!/favorite_files_list.json
 Preferences.sublime-settings
 encoding_cache.json
