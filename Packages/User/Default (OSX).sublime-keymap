@@ -49,11 +49,13 @@
     { "keys": ["super+2"], "command": "prev_view" },
     { "keys": ["super+3"], "command": "next_view_in_stack" },
     { "keys": ["super+4"], "command": "next_view" },
-    // alt+e括号选择删除，super+t括号内容选中，alt+s折叠当前括号
-    {"keys": ["alt+e"], "command": "bh_remove_brackets"},
+    // alt+e括号选择删除，super+t括号内容选中，alt+s折叠当前括号},
+    {
+        "keys": ["alt+e"],
+        "command": "bh_remove_brackets"},
     {
         "no_outside_adj": true,
-        "keys": ["super+t"],
+        "keys": ["alt+s"],
         "command": "bh_key",
         "args":
         {
@@ -66,7 +68,7 @@
         }
     },
     {
-        "keys": ["alt+s"],
+        "keys": ["alt+t"],
         "command": "bh_key",
         "args":
         {
