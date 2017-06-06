@@ -1,4 +1,4 @@
-# My SublimeText Settings
+ # My SublimeText Settings
 
 ## 配置SublimeText
 

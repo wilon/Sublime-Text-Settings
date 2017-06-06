@@ -1,25 +1,9 @@
 {
     "files": [
-        "/Users/weilong/web/github/mynote/wilon.txt",
         "/etc/hosts",
-        "C:/xampp/apache/conf/extra/httpd-vhosts.conf",
-        "/Users/weilong/web/github/mynote/discuz.php",
-        "/Users/weilong/web/github/mynote/ThinkPHP.php",
-        "/Users/weilong/web/github/mynote/jQuery.js",
-        "/Users/weilong/web/github/mynote/PhpNote.php",
-        "/Users/weilong/web/github/mynote/HTML+CSS.html",
         "/Users/weilong/web/github/mynote/MySqlNote.sql",
-        "/Users/weilong/web/github/mynote/VimNote.php",
-        "/Users/weilong/web/github/mynote/LinuxNote.php",
-        "/Users/weilong/web/github/mynote/PregNote.php",
         "/Users/weilong/web/github/index.php",
-        "/Users/weilong/web/github/mynote/DWZ.php",
-        "/Users/weilong/web/github/17house/17house_info.php",
-        "/Users/weilong/web/github/17house/news_17house_readme.md",
-        "/Users/weilong/web/github/mynote/GitNote.php",
-        "/Users/weilong/web/github/17house/pigcms.txt",
-        "/Users/weilong/.zshrc",
-        "C:\\Windows\\System32\\drivers\\etc\\HOSTS"
+        "/Users/weilong/.zshrc"
     ],
     "groups": {},
     "version": 1

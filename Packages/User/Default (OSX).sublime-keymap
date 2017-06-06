@@ -55,7 +55,7 @@
         "command": "bh_remove_brackets"},
     {
         "no_outside_adj": true,
-        "keys": ["alt+s"],
+        "keys": ["super+t"],
         "command": "bh_key",
         "args":
         {

@@ -1,10 +1,6 @@
 {
 	"auto_upgrade_last_run": null,
 	"bootstrapped": true,
-	"channels":
-	[
-		"https://wilon.github.io/static/channel_v3.json"
-	],
 	"in_process_packages":
 	[
 	],
@@ -29,6 +25,7 @@
 		"HTML Minifier",
 		"HTMLBeautify",
 		"Insert Nums",
+		"jQuery",
 		"LiveStyle",
 		"Markdown Preview",
 		"Markdown Table Formatter",
@@ -46,6 +43,7 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-php",
 		"TabsExtra",
+		"Theme - Monokai+",
 		"VimL"
 	]
 }
