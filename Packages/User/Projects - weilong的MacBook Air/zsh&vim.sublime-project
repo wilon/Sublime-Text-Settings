@@ -1,0 +1,20 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/weilong/.oh-my-zsh"
+		},
+        {
+            "path": "/Users/weilong/.vim/bundle"
+        },
+		{
+			"path": "/Users/weilong/.oh-my-zsh/plugins/zsh-autosuggestions/"
+		},
+        {
+            "path": "/Users/weilong/.oh-my-zsh/plugins/z/"
+        },
+        {
+            "path": "/Users/weilong/.oh-my-zsh/plugins/colon/"
+        }
+	]
+}
