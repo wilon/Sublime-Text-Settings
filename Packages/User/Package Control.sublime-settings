@@ -1,6 +1,10 @@
 {
 	"auto_upgrade_last_run": null,
 	"bootstrapped": true,
+	"channels":
+	[
+		"https://raw.githubusercontent.com/wilon/sublime/master/download/channel_v3.json"
+	],
 	"in_process_packages":
 	[
 	],
@@ -11,6 +15,7 @@
 		"AngularJS",
 		"AutoFileName",
 		"BracketHighlighter",
+		"ChineseLocalizations",
 		"Clickable URLs",
 		"Codecs33",
 		"Color Highlighter",
