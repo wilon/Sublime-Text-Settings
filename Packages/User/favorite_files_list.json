@@ -1,8 +1,8 @@
 {
     "files": [
         "/etc/hosts",
-        "/Users/weilong/web/github/mynote/MySqlNote.sql",
-        "/Users/weilong/web/github/index.php",
+        "/Users/weilong/workspace/github/mynote/MySqlNote.sql",
+        "/Users/weilong/workspace/github/index.php",
         "/Users/weilong/.zshrc"
     ],
     "groups": {},
