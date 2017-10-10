@@ -1,6 +1,6 @@
 {
-	"bootstrapped": true,
 	"auto_upgrade": true,
+	"bootstrapped": true,
 	"channels":
 	[
 		"http://wilon.oschina.io/static/channel_v3.json"
@@ -39,6 +39,7 @@
 		"MySQL Snippets",
 		"Origami",
 		"Package Control",
+		"Pretty JSON",
 		"ProjectManager",
 		"SFTP",
 		"SideBarEnhancements",
