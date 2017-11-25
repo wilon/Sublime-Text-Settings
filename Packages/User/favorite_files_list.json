@@ -1,10 +1,33 @@
 {
     "files": [
-        "/etc/hosts",
-        "/Users/weilong/web/github/mynote/MySqlNote.sql",
-        "/Users/weilong/web/github/index.php",
-        "/Users/weilong/.zshrc"
+        {
+            "alias": "hosts",
+            "file": "/etc/hosts"
+        },
+        {
+            "alias": "MySqlNote.sql",
+            "file": "/Users/weilong/web/github/mynote/MySqlNote.sql"
+        },
+        {
+            "alias": "index.php",
+            "file": "/Users/weilong/web/github/index.php"
+        },
+        {
+            "alias": ".zshrc",
+            "file": "/Users/weilong/.zshrc"
+        },
+        {
+            "alias": "HOSTS",
+            "file": "C:\\Windows\\System32\\drivers\\etc\\HOSTS"
+        }
     ],
-    "groups": {},
-    "version": 1
+    "groups": {
+        "win": [
+            {
+                "alias": "HOSTS",
+                "file": "C:\\Windows\\System32\\drivers\\etc\\HOSTS"
+            }
+        ]
+    },
+    "version": 2
 }
