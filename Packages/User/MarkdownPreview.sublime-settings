@@ -1,3 +1,5 @@
 {
     "enabled_parsers": ["markdown"],
+     "parser": "github",
+    "enable_autoreload": true
 }

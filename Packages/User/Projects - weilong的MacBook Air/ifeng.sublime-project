@@ -1,12 +1,12 @@
 {
 	"folders":
 	[
-		{"path": "/Users/weilong/web/ifeng/cert"},
-        {"path": "/Users/weilong/web/ifeng/cert-api/"},
-		{"path": "/Users/weilong/web/ifeng/ossec"},
-		{"path": "/Users/weilong/web/ifeng/jumpbox"},
-		{"path": "/Users/weilong/web/ifeng/noah3"},
-		{"path": "/Users/weilong/web/ifeng/ifeng-token/"},
-		{"path": "/Users/weilong/web/ifeng/security"}
+		{"path": "/Users/weilong/workspace/ifeng/cert"},
+        {"path": "/Users/weilong/workspace/ifeng/cert-api/"},
+		{"path": "/Users/weilong/workspace/ifeng/ossec"},
+		{"path": "/Users/weilong/workspace/ifeng/jumpbox"},
+		{"path": "/Users/weilong/workspace/ifeng/noah3"},
+		{"path": "/Users/weilong/workspace/ifeng/ifeng-token/"},
+		{"path": "/Users/weilong/workspace/ifeng/security"}
 	]
 }

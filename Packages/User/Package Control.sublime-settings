@@ -1,6 +1,10 @@
 {
-	"auto_upgrade_last_run": null,
+	"auto_upgrade": true,
 	"bootstrapped": true,
+	"channels":
+	[
+		"http://wilon.oschina.io/static/channel_v3.json"
+	],
 	"in_process_packages":
 	[
 	],
@@ -11,6 +15,7 @@
 		"AngularJS",
 		"AutoFileName",
 		"BracketHighlighter",
+		"ChineseLocalizations",
 		"Clickable URLs",
 		"Codecs33",
 		"Color Highlighter",
@@ -22,6 +27,7 @@
 		"Emmet",
 		"FavoriteFiles",
 		"FileDiffs",
+		"GitGutter",
 		"HTML Minifier",
 		"HTMLBeautify",
 		"Insert Nums",
@@ -30,11 +36,11 @@
 		"Markdown Preview",
 		"Markdown Table Formatter",
 		"MarkdownHighlighting",
+		"MySQL Snippets",
 		"Origami",
 		"Package Control",
+		"Pretty JSON",
 		"ProjectManager",
-		"react-native-snippets",
-		"ReactJS",
 		"SFTP",
 		"SideBarEnhancements",
 		"Smarty",

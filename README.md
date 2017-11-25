@@ -6,20 +6,22 @@
 
 2. 打开SublimeText，`Preferences -> Browse Packages` 文件夹内
 
+清空里边数据 `rm -rf ./*`
+
 3. git下载配置包
 
 ```shell
     git init
     git remote add origin git@github.com:wilon/Sublime-Text-Settings.git
     git pull
-    git merge origin master
+    git checkout master
 ```
 
 4. 配置 License、Preferences
 
-    `cp -f $packages/Local/License (PLATFORM).sublime_license $packages/Local/License.sublime_license `
+    `cp -f Local/License (PLATFORM).sublime_license Local/License.sublime_license `
 
-    `cp -f $packages/User/Preferences (PLATFORM).sublime-settings $packages/User/Preferences.sublime-settings`
+    `cp -f Packages/User/Preferences (PLATFORM).sublime-settings Packages/User/Preferences.sublime-settings`
 
 5. 重启 SublimeText，等待插件配置
 
