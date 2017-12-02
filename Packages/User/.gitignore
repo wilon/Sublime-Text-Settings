@@ -13,5 +13,9 @@
 !/*.tmTheme
 !/*.sublime-menu
 !/favorite_files_list.json
+
 Preferences.sublime-settings
+
 encoding_cache.json
+
+Default.sublime-keymap
