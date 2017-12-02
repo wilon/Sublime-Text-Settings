@@ -12,7 +12,7 @@
 
 ```shell
     git init
-    git remote add origin git@github.com:wilon/Sublime-Text-Settings.git
+    git remote add origin https://github.com/wilon/Sublime-Text-Settings.git
     git pull
     git checkout master
 ```
